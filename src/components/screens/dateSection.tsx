@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { dummyNotes } from "@/data/notes";
 import CalendarComponent from "./calender";
 import { Calendar } from "../ui/calendar";
 import { Button } from "../ui/button";
@@ -10,10 +11,22 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { format } from "date-fns";
+import NoteCard from "./noteCard";
 // import { DayPicker } from "react-day-picker";
 
 export default function DateSection() {
 	const [date, setDate] = useState<Date | undefined>(undefined);
+	const [notes, setNotes] = useState(dummyNotes);
+	useEffect(() => {
+		const savedNotes = localStorage.getItem("calendarNotes");
+		if (savedNotes) {
+			setNotes(JSON.parse(savedNotes));
+		}
+	}, []);
+	useEffect(() => {
+		localStorage.setItem("calendarNotes", JSON.stringify(notes));
+	}, [notes]);
+	// console.log("Clicked day object:", day);
 
 	return (
 		<section className="bg-black w-full flex max-sm:flex-col justify-center">
@@ -30,6 +43,7 @@ export default function DateSection() {
 						captionLayout="dropdown"
 						components={{
 							Day: ({ day, modifiers, ...props }) => (
+								// console.log("formatted ---", format(day.date, "yyyy-MM-dd")),
 								<Popover>
 									<PopoverTrigger asChild>
 										<button
@@ -43,7 +57,20 @@ export default function DateSection() {
 										</button>
 									</PopoverTrigger>
 									<PopoverContent side="top" align="center">
-										<div>Add your note for {format(day.date, "PPP")}</div>
+										<NoteCard
+											date={`${format(day.date, "PPP")}`}
+											notes={notes.filter(
+												(n) => n.date === format(day.date, "yyyy-MM-dd")
+											)}
+											onAddNote={(text) =>
+												setNotes((prev) => [
+													...prev,
+													{ date: format(day.date, "yyyy-MM-dd"), text },
+												])
+											}
+										/>
+
+										{/* <div>Add your note for {format(day.date, "PPP")}</div> */}
 									</PopoverContent>
 								</Popover>
 							),
