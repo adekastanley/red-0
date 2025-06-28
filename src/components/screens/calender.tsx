@@ -26,7 +26,7 @@ export default function CalendarComponent() {
 					chevron: `${defaultClassNames.chevron} fill-amber-500`,
 				}}
 				components={{
-					Day: (props) => <div>My Custom Day</div>,
+					Day: () => <div>My Custom Day</div>,
 				}}
 			/>
 		</div>
