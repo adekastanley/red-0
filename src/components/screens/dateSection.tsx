@@ -50,7 +50,7 @@ export default function DateSection() {
 								// console.log("formatted ---", format(day.date, "yyyy-MM-dd")),
 								<Popover>
 									<PopoverTrigger asChild>
-										<button
+										<div
 											{...props}
 											className={`w-8 h-8 flex items-center justify-between rounded relative hover:bg-accent transition   ${
 												modifiers.selected ? "bg-blue-500 text-white" : ""
@@ -62,21 +62,23 @@ export default function DateSection() {
 													
 											`}
 											aria-label={`Select ${day.date}`}
+											role="button"
+											tabIndex={0}
 										>
-											<div className="relative w-full">
+											<div className="relative w-full text-center">
 												{format(day.date, "d")}
 											</div>
 											{notes.some(
 												(n) => n.date === format(day.date, "yyyy-MM-dd")
 											) && (
-												<div className="w-fit h-fit m-0 p-0 absolute -bottom-2 left-2">
+												<div className="w-fit h-fit m-0 p-0 absolute -bottom-2 left-1">
 													<Dot className="w-5 h-5 text-green-500" />
 												</div>
 											)}
 											{/* <div className="w-fit h-fit m-0 p-0 absolute -bottom-1 left-1">
 												<Dot className="w-5 h-5 text-green-500" />
 											</div> */}
-										</button>
+										</div>
 									</PopoverTrigger>
 									<PopoverContent side="top" align="center">
 										<NoteCard
