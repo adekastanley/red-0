@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { dummyNotes } from "@/data/notes";
-import CalendarComponent from "./calender";
+// import CalendarComponent from "./calender";
 import { Calendar } from "../ui/calendar";
-import { Button } from "../ui/button";
+// import { Button } from "../ui/button";
+import { Dot } from "lucide-react";
 import {
 	Popover,
 	PopoverContent,
@@ -29,10 +30,13 @@ export default function DateSection() {
 	// console.log("Clicked day object:", day);
 
 	return (
-		<section className="bg-black w-full flex max-sm:flex-col justify-center">
-			<div className="bg-green-300 w-full">right side</div>
+		<section className=" w-full flex max-sm:flex-col justify-center gap-5">
+			<div className=" w-full px-2 sm:px-10">
+				<h1 className="text-6xl ">The best calender app for your life work</h1>
+				<p>control your day, week and month</p>
+			</div>
 
-			<div className="bg-purple-500 flex max-sm:justify-center items-left w-full">
+			<div className="flex max-sm:justify-center items-left w-full">
 				<div className="flex justify-center  min-w-[20rem]">
 					{/* <CalendarComponent /> */}
 					<Calendar
@@ -48,12 +52,30 @@ export default function DateSection() {
 									<PopoverTrigger asChild>
 										<button
 											{...props}
-											className={`w-8 h-8 flex items-center justify-center rounded hover:bg-accent transition ${
+											className={`w-8 h-8 flex items-center justify-between rounded relative hover:bg-accent transition   ${
 												modifiers.selected ? "bg-blue-500 text-white" : ""
-											} ${modifiers.today ? "border-2 border-red-500" : ""}`}
+											} ${
+												modifiers.today
+													? "border-2 bg-blue-200 rounded-full"
+													: ""
+											}
+													
+											`}
 											aria-label={`Select ${day.date}`}
 										>
-											{format(day.date, "d")}
+											<div className="relative w-full">
+												{format(day.date, "d")}
+											</div>
+											{notes.some(
+												(n) => n.date === format(day.date, "yyyy-MM-dd")
+											) && (
+												<div className="w-fit h-fit m-0 p-0 absolute -bottom-2 left-2">
+													<Dot className="w-5 h-5 text-green-500" />
+												</div>
+											)}
+											{/* <div className="w-fit h-fit m-0 p-0 absolute -bottom-1 left-1">
+												<Dot className="w-5 h-5 text-green-500" />
+											</div> */}
 										</button>
 									</PopoverTrigger>
 									<PopoverContent side="top" align="center">

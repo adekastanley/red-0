@@ -1,15 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar } from "../../../calendar";
+// import { Calendar } from "../../../calendar";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import "react-day-picker/dist/style.css"; // Optional default styles
-import { format } from "date-fns";
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/components/ui/popover";
+
 export default function CalendarComponent() {
 	const [selected, setSelected] = useState<Date | undefined>(
 		new Date(2025, 5, 12)

@@ -25,6 +25,7 @@ type notesProp = {
 function NoteCard({ date, notes, onAddNote }: NotesCardProps) {
 	// console.log("notes are - ", notes);
 	const [input, setInput] = useState("");
+
 	return (
 		<Card className="border-none shadow-none  m-0">
 			<CardHeader className=" p-2">
@@ -38,7 +39,7 @@ function NoteCard({ date, notes, onAddNote }: NotesCardProps) {
 				<ul className="p-2">
 					{notes && notes.length > 0 ? (
 						notes.map((items, index) => (
-							<li className="border-b-2 my-2" key={index}>
+							<li className={` border-b-2 my-2 `} key={index}>
 								<div>
 									<div className="text-xs">{items.date}</div>
 									<div>{items.text}</div>
