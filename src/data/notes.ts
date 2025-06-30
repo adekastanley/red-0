@@ -11,5 +11,7 @@ export const dummyNotes: Note[] = [
 	{ date: "2025-06-29", text: "Independence Day" },
 	{ date: "2025-06-27", text: "previous note" },
 	{ date: "2025-07-20", text: "Team outing" },
-	{ date: "2025-08-05", text: "Client deadline" },
+	{ date: "2025-07-04", text: "Team outing" },
+	{ date: "2025-07-04", text: "another note outing" },
+	{ date: "2025-07-05", text: "Client deadline" },
 ];

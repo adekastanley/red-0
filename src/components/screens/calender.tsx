@@ -3,7 +3,7 @@
 import { useState } from "react";
 // import { Calendar } from "../../../calendar";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
-import "react-day-picker/dist/style.css"; // Optional default styles
+import "react-day-picker/dist/style.css";
 
 export default function CalendarComponent() {
 	const [selected, setSelected] = useState<Date | undefined>(
